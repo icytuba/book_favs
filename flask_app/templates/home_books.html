@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Books</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h3 class="form-group row">New Book</h3>
+                <form action="/process/book" method="post">
+                    <div class="form-group row">
+                        <label for="book_title" class="col-form-label">Title:</label>
+                        <input type="text" name="book_title" class="form-control">
+                    </div>
+                    <div class="form-group row">
+                        <label for="num_page" class="col-form-label">Number of Pages:</label>
+                        <input type="text" name="num_pages" class="form-control">
+                    </div>
+                    <div class="form-group row">
+                        <input type="submit" value="Add Book" class="col-form-label">
+                    </div>
+                </form>
+            </div>
+            <div class="col-7">
+                <h3>All Books</h3>
+                    <ul class="list-group">
+                        {% for book in books %}
+                        <a href="/book/{{ book.id }}" class="list-group-item">{{ book.title }}</a>
+                        {% endfor %}
+                    </ul>
+                <br>
+                <a href="/authors">Add Author</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

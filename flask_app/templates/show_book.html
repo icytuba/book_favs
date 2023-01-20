@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h3 class="form-group row">{{ book.title }}</h3>
+                <p>Number of Pages: {{ book.num_of_pages }}</p>
+                <div>
+                    <h5>Favorited by:</h5>
+                    <ul class="list-group">
+                        {% for author in book.authors %}
+                        <p>{{ author.name }}</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <br><br><br>
+                <a href="/books">Back</a>
+            </div>
+                
+            <div class="col-7">
+                <h3>Add a Favorite Author of the Book</h3>
+                <form action="/process/fav_author" method="post">
+                    <div class="form-group row">
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <label for="fav_author" class="col-form-label">Author:</label>
+                        <select name="fav_author" class="form-control">
+                            {% for author in authors %}
+                                <option value="{{ author.id }}">{{ author.name }}</option>
+                            {% endfor %}
+                    </div>
+                    <div class="form-group row">
+                        <input type="submit" value="Add Favorite" class="btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
